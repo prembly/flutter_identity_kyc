@@ -88,7 +88,7 @@ class IdentityKYCWebView extends ModalRoute {
                 name: 'Print',
                 onMessageReceived: (JavascriptMessage message) {
                   //This is where you receive message from
-                  print(message.message);
+
                   var response = json.decode(message.message);
                   switch (response["event"]) {
                     case "closed":
@@ -114,12 +114,8 @@ class IdentityKYCWebView extends ModalRoute {
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
           },
-          onPageStarted: (String url) {
-            //TODO show loader here
-          },
-          onPageFinished: (String url) {
-            //TODO show loader here
-          },
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {},
           gestureNavigationEnabled: true,
         ),
       ),

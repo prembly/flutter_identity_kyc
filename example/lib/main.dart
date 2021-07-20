@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Center(
             child: FlutterIdentityKyc(
-                merchantKey: "rvnn3ingodoed5ouy0z4:Cq_dXaVYS6F_R5HOQetA6HcLqKw",
+                merchantKey: "rvnn3i5HOQetA6HcLqKw",
                 email: "olayiwolakayode078@gmail.com",
                 firstName: "kayode",
                 lastName: "olayiwola",

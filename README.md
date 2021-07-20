@@ -1,15 +1,65 @@
 # flutter_identity_kyc
 
-A new flutter plugin project.
+IdentityPass KYC Checkout flutter Wrapper
 
-## Getting Started
+# Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+Install package by adding  flutter_identity_kyc to your pubspec.yaml file
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 
+# KYC Widget
+```dart
+FlutterIdentityKyc(
+    merchantKey: "jywkldnlwoidhlwdknlwo",
+    email: "test@test.com",
+    firstName: "",
+    lastName: "",
+    onCancel: (response) => {print(response)},
+    onVerified: (response) => {print(response)},
+    onError: (error) => print(error)),
+)
+```
+
+
+
+# Sample implementation
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_identity_kyc/flutter_identity_kyc.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text('IdentityPass Checkout Test'),
+          ),
+          body: Center(
+            child: FlutterIdentityKyc(
+                merchantKey: "",
+                email: ",
+                firstName: "",
+                lastName: "",
+                onCancel: (response) => {print(response)},
+                onVerified: (response) => {print(response)},
+                onError: (error) => print(error)),
+          )),
+    );
+  }
+}
+```
