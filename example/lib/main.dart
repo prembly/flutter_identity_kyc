@@ -29,8 +29,12 @@ class _MyAppState extends State<MyApp> {
                 email: "olayiwolakayode078@gmail.com",
                 firstName: "kayode",
                 lastName: "olayiwola",
-                onCancel: (response) => {print(response)},
-                onVerified: (response) => {print(response)},
+                onCancel: (response) {
+                  print(response);
+                },
+                onVerified: (response) {
+                  print(response);
+                },
                 onError: (error) => print(error)),
           )),
     );

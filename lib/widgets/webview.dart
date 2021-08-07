@@ -12,9 +12,9 @@ class IdentityKYCWebView extends ModalRoute {
 
   final String email;
 
-  final String? firstName;
+  final String firstName;
 
-  final String? lastName;
+  final String lastName;
 
   final Function onCancel;
 
@@ -23,13 +23,13 @@ class IdentityKYCWebView extends ModalRoute {
   final Function onError;
 
   IdentityKYCWebView(
-      {required this.merchantKey,
-      required this.email,
+      {@required this.merchantKey,
+      @required this.email,
       this.firstName,
       this.lastName,
-      required this.onCancel,
-      required this.onVerified,
-      required this.onError});
+      @required this.onCancel,
+      @required this.onVerified,
+      @required this.onError});
 
   @override
   Widget buildPage(
@@ -132,7 +132,7 @@ class IdentityKYCWebView extends ModalRoute {
   Color get barrierColor => Colors.black.withOpacity(0.5);
 
   @override
-  String? get barrierLabel => "test";
+  String get barrierLabel => "test";
 
   @override
   bool get maintainState => true;

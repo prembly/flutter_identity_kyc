@@ -1,17 +1,17 @@
 name: flutter_identity_kyc
-description: A new flutter plugin project.
-version: 0.0.2
+description: identitypass flutter kyc package.
+version: 0.0.3
 homepage: https://github.com/IDENTITYPASS/flutter_identity_kyc.git
 repository: https://github.com/IDENTITYPASS/flutter_identity_kyc.git
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=1.12.0 <3.0.0"
   flutter: ">=1.20.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^2.0.10
+  webview_flutter:
 
 dev_dependencies:
   flutter_test:
