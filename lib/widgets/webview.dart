@@ -16,6 +16,10 @@ class IdentityKYCWebView extends ModalRoute {
 
   final String lastName;
 
+  final String userRef;
+
+  final Boolean isTest;
+
   final Function onCancel;
 
   final Function onVerified;
@@ -27,6 +31,8 @@ class IdentityKYCWebView extends ModalRoute {
       @required this.email,
       this.firstName,
       this.lastName,
+      this.userRef,
+      this.isTest,
       @required this.onCancel,
       @required this.onVerified,
       @required this.onError});
@@ -59,6 +65,8 @@ class IdentityKYCWebView extends ModalRoute {
                       '                                        first_name: "$firstName}",\n' +
                       '                                        last_name: "$lastName}",\n' +
                       '                                        email: "$email",\n' +
+                      '                                        user_ref: "$userRef",\n' +
+                      '                                        is_test: "$isTest",\n' +                    
                       '                                        callback: function (response) {\n' +
                       '                                           console.log("callback Response", response); \n' +
                       '                                           if(response.status =="success"){\n' +
