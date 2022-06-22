@@ -5,3 +5,16 @@
 ## 0.0.3
 
 * added backward compatibility
+
+
+## 0.0.4
+
+* added test environment
+
+## 0.0.5
+
+* added test environment
+
+## 0.0.6
+
+* added test environment update

@@ -14,6 +14,8 @@ FlutterIdentityKyc(
     email: "test@test.com",
     firstName: "",
     lastName: "",
+    userRef:"unique user ref",
+    isTest:false //should be true if you want to run a test
     onCancel: (response) => {print(response)},
     onVerified: (response) => {print(response)},
     onError: (error) => print(error)),
@@ -55,6 +57,8 @@ class _MyAppState extends State<MyApp> {
                 email: ",
                 firstName: "",
                 lastName: "",
+                userRef:"",
+                isTest:false,
                 onCancel: (response) => {print(response)},
                 onVerified: (response) => {print(response)},
                 onError: (error) => print(error)),

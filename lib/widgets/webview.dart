@@ -18,7 +18,7 @@ class IdentityKYCWebView extends ModalRoute {
 
   final String userRef;
 
-  final Boolean isTest;
+  final bool isTest;
 
   final Function onCancel;
 
@@ -50,6 +50,7 @@ class IdentityKYCWebView extends ModalRoute {
           initialUrl: Uri.dataFromString(
                   '<html lang="en"><head> \n\n' +
                       '                        <meta charset="UTF-8">\n' +
+                      '<meta http-equiv="cache-control" content="max-age=0" /><meta http-equiv="cache-control" content="no-cache" />/n' +
                       '                        <meta http-equiv="X-UA-Compatible" content="ie=edge">\n' +
                       '                        <title>Identity Pass</title>\n' +
                       '                </head>\n' +
@@ -66,7 +67,7 @@ class IdentityKYCWebView extends ModalRoute {
                       '                                        last_name: "$lastName}",\n' +
                       '                                        email: "$email",\n' +
                       '                                        user_ref: "$userRef",\n' +
-                      '                                        is_test: "$isTest",\n' +                    
+                      '                                        is_test: $isTest,\n' +
                       '                                        callback: function (response) {\n' +
                       '                                           console.log("callback Response", response); \n' +
                       '                                           if(response.status =="success"){\n' +

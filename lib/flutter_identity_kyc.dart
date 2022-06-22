@@ -29,12 +29,12 @@ class FlutterIdentityKyc extends StatefulWidget {
 
   //user last name - optional
   final String lastName;
-  
+
   //user reference - optional
   final String userRef;
 
   //is test - optional
-  final Boolean isTest;
+  final bool isTest;
 
   //on verification cancelled callback
   final Function onCancel;
@@ -78,8 +78,8 @@ class FlutterIdentityKycState extends State<FlutterIdentityKyc> {
         merchantKey: widget.merchantKey,
         firstName: widget.firstName,
         lastName: widget.lastName,
-        userRef:widget.userRef,
-        isTest:widget.isTest,
+        userRef: widget.userRef,
+        isTest: widget.isTest,
         email: widget.email,
         onCancel: widget.onCancel,
         onError: widget.onError,
