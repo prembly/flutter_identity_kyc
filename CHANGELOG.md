@@ -18,3 +18,8 @@
 ## 0.0.6
 
 * added test environment update
+
+
+## 0.0.7
+
+* added null safety compatibility

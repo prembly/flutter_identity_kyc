@@ -25,16 +25,16 @@ class FlutterIdentityKyc extends StatefulWidget {
   final String email;
 
   //user first name - optional
-  final String firstName;
+  final String? firstName;
 
   //user last name - optional
-  final String lastName;
+  final String? lastName;
 
   //user reference - optional
-  final String userRef;
+  final String? userRef;
 
   //is test - optional
-  final bool isTest;
+  final bool? isTest;
 
   //on verification cancelled callback
   final Function onCancel;
@@ -46,23 +46,23 @@ class FlutterIdentityKyc extends StatefulWidget {
   final Function onError;
 
   //text to appear on button
-  final Text buttonText;
+  final Text? buttonText;
 
   ///custom button design
-  final ElevatedButton customButton;
+  final ElevatedButton? customButton;
 
   FlutterIdentityKyc(
-      {@required this.merchantKey,
-      @required this.email,
+      {required this.merchantKey,
+      required this.email,
       this.firstName,
       this.lastName,
       this.userRef,
       this.isTest,
-      @required this.onCancel(response),
-      @required this.onVerified(response),
+      required this.onCancel(response),
+      required this.onVerified(response),
       this.customButton,
       this.buttonText,
-      @required this.onError(error)});
+      required this.onError(error)});
 
   @override
   FlutterIdentityKycState createState() => FlutterIdentityKycState();
