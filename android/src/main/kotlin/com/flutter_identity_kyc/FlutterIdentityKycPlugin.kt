@@ -1,4 +1,4 @@
-package com.example.flutter_identity_kyc
+package com.flutter_identity_kyc
 
 import androidx.annotation.NonNull
 

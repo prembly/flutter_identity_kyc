@@ -1,13 +1,8 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class IdentityKYCWebView extends ModalRoute {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
-
   final String merchantKey;
 
   final String email;
@@ -43,89 +38,86 @@ class IdentityKYCWebView extends ModalRoute {
     Animation<double> animation,
     Animation<double> secondaryAnimation,
   ) {
-    return Material(
-      type: MaterialType.transparency,
-      child: SafeArea(
-        child: WebView(
-          initialUrl: Uri.dataFromString(
-                  '<html lang="en"><head> \n\n' +
-                      '                        <meta charset="UTF-8">\n' +
-                      '<meta http-equiv="cache-control" content="max-age=0" /><meta http-equiv="cache-control" content="no-cache" />/n' +
-                      '                        <meta http-equiv="X-UA-Compatible" content="ie=edge">\n' +
-                      '                        <title>Identity Pass</title>\n' +
-                      '                </head>\n' +
-                      '                      <body  onload="verifyKYC()" style="background-color:#fff;height:100vh ">\n' +
-                      '                        <script src="https://js.myidentitypay.com/v1/inline/kyc.js"></script>\n' +
-                      '                        \n' +
-                      '                          <script type="text/javascript">\n' +
-                      '                                window.onload = verifyKYC;\n' +
-                      '                                function verifyKYC(){\n' +
-                      '\n' +
-                      '                                    var paymentEngine =  IdentityKYC.verify({\n' +
-                      '                                        merchant_key: "$merchantKey",\n' +
-                      '                                        first_name: "$firstName}",\n' +
-                      '                                        last_name: "$lastName}",\n' +
-                      '                                        email: "$email",\n' +
-                      '                                        user_ref: "$userRef",\n' +
-                      '                                        is_test: $isTest,\n' +
-                      '                                        callback: function (response) {\n' +
-                      '                                           console.log("callback Response", response); \n' +
-                      '                                           if(response.status =="success"){\n' +
-                      '                                            var response_data = {event:"verified", data:response};\n' +
-                      '                                            Print.postMessage(JSON.stringify(response_data))\n' +
-                      '                                           }\n' +
-                      '                                           else if(response.code == "E01"){\n' +
-                      '                                            var response_data = {event:"closed"};\n' +
-                      '                                            Print.postMessage(JSON.stringify(response_data))\n' +
-                      '                                           }\n' +
-                      '                                           else{\n' +
-                      '                                            var response_data = {event:"error",message:response.message};\n' +
-                      '                                            Print.postMessage(JSON.stringify(response_data))\n' +
-                      '                                           }\n' +
-                      '                                      },\n' +
-                      '                                    })\n' +
-                      '                                }\n' +
-                      ' \n' +
-                      '                        </script> \n' +
-                      '                </body>\n' +
-                      '        </html> ',
-                  mimeType: 'text/html')
-              .toString(),
-          javascriptMode: JavascriptMode.unrestricted,
-          javascriptChannels: Set.from([
-            JavascriptChannel(
-                name: 'Print',
-                onMessageReceived: (JavascriptMessage message) {
-                  //This is where you receive message from
+    InAppWebViewController _webViewController;
 
-                  var response = json.decode(message.message);
-                  switch (response["event"]) {
-                    case "closed":
-                      onCancel({"status": "closed"});
-                      Navigator.pop(context);
-                      break;
-                    case "error":
-                      onError({"status": "error", "message": response.message});
-                      Navigator.pop(context);
-                      break;
-                    case "verified":
-                      onVerified({
-                        "status": "success",
-                        "data": response,
-                      });
-                      Navigator.pop(context);
-                      break;
-                    default:
-                      break;
-                  }
-                })
-          ]),
-          onWebViewCreated: (WebViewController webViewController) {
-            _controller.complete(webViewController);
-          },
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
-          gestureNavigationEnabled: true,
+    return new WillPopScope(
+      onWillPop: () async => false,
+      child: Material(
+        type: MaterialType.transparency,
+        child: SafeArea(
+          child: InAppWebView(
+            initialUrlRequest: URLRequest(
+                url: Uri.parse(
+                    "https://mobile-kyc.myidentitypass.com?merchantKey=" +
+                        merchantKey +
+                        "&firstName=" +
+                        firstName! +
+                        "&lastName=" +
+                        lastName! +
+                        "&email=" +
+                        email +
+                        "&user_ref=" +
+                        userRef! +
+                        "&isTest=" +
+                        isTest.toString())),
+            initialOptions: InAppWebViewGroupOptions(
+              crossPlatform: InAppWebViewOptions(
+                mediaPlaybackRequiresUserGesture: false,
+              ),
+            ),
+            onWebViewCreated: (InAppWebViewController controller) {
+              _webViewController = controller;
+
+              _webViewController.addJavaScriptHandler(
+                handlerName: 'message',
+                callback: (args) {
+                  try {
+                    Map response = json.decode(args[0]);
+                    if (response.containsKey("event")) {
+                      switch (response["event"]) {
+                        case "closed":
+                          onCancel({"status": "closed"});
+                          Navigator.pop(context);
+                          break;
+                        case "error":
+                          onError({
+                            "status": "error",
+                            "message": response['message']
+                          });
+                          Navigator.pop(context);
+                          break;
+                        case "verified":
+                          onVerified({
+                            "status": "success",
+                            "data": response,
+                          });
+                          Navigator.pop(context);
+                          break;
+                        default:
+                          break;
+                      }
+                    }
+                  } catch (e) {}
+                },
+              );
+            },
+            androidOnPermissionRequest: (InAppWebViewController controller,
+                String origin, List<String> resources) async {
+              return PermissionRequestResponse(
+                  resources: resources,
+                  action: PermissionRequestResponseAction.GRANT);
+            },
+            onLoadStop: (controller, url) async {
+              await controller.evaluateJavascript(source: """
+              window.addEventListener("message", (event) => {
+                window.flutter_inappwebview
+                      .callHandler('message',event.data);
+              }, false);
+            """);
+            },
+            onConsoleMessage: (InAppWebViewController controller,
+                ConsoleMessage consoleMessage) {},
+          ),
         ),
       ),
     );
@@ -141,7 +133,7 @@ class IdentityKYCWebView extends ModalRoute {
   Color get barrierColor => Colors.black.withOpacity(0.5);
 
   @override
-  String get barrierLabel => "test";
+  String get barrierLabel => "identitypass";
 
   @override
   bool get maintainState => true;

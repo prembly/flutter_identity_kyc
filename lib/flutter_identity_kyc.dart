@@ -69,7 +69,7 @@ class FlutterIdentityKyc extends StatefulWidget {
 }
 
 class FlutterIdentityKycState extends State<FlutterIdentityKyc> {
-  void showModal() {
+  Future<void> showModal() async {
     /*
        pass data to modal and display webview component
     */

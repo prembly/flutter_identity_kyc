@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_identity_kyc_example">
+
+     <!-- Permissions options for the `camera` group -->
+ 
+
    <application
         android:label="flutter_identity_kyc_example"
         android:icon="@mipmap/ic_launcher">

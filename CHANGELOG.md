@@ -23,3 +23,15 @@
 ## 0.0.7
 
 * added null safety compatibility
+
+## 0.0.8
+
+* bug fix - webview compatibility
+
+## 0.0.9
+
+* bug fix - android installation issue
+
+## 0.1.0
+
+* bug fix - fixed display issue,camera issue and file upload issue.
