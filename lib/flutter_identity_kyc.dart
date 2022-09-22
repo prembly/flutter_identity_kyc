@@ -1,104 +1,14 @@
+library identity_verify;
+
+import 'dart:io';
+
+import 'package:flutter_identity_kyc/src/common/exceptions.dart';
+import 'package:flutter_identity_kyc/src/service/platform_interface_verification.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'widgets/webview.dart';
 
-class FlutterIdentityKyc extends StatefulWidget {
-  /*
+part 'src/common/identity_verify.dart';
 
-      IdentityPass Main Flutter wrapper
-      params:
-          merchantKey:String
-          email: String
-          firstName: String?
-          lastName: String?
-          onCancel: Function
-          onVerified: Function
-          onError: Function
-          buttonText: Text?
-          customButton: ElevatedButton?
-
-  */
-
-  //Merchant public key
-  final String merchantKey;
-
-  //user email
-  final String email;
-
-  //user first name - optional
-  final String? firstName;
-
-  //user last name - optional
-  final String? lastName;
-
-  //user reference - optional
-  final String? userRef;
-
-  //is test - optional
-  final bool? isTest;
-
-  //on verification cancelled callback
-  final Function onCancel;
-
-  //on verification successfull calback
-  final Function onVerified;
-
-  // on error callback
-  final Function onError;
-
-  //text to appear on button
-  final Text? buttonText;
-
-  ///custom button design
-  final ElevatedButton? customButton;
-
-  FlutterIdentityKyc(
-      {required this.merchantKey,
-      required this.email,
-      this.firstName,
-      this.lastName,
-      this.userRef,
-      this.isTest,
-      required this.onCancel(response),
-      required this.onVerified(response),
-      this.customButton,
-      this.buttonText,
-      required this.onError(error)});
-
-  @override
-  FlutterIdentityKycState createState() => FlutterIdentityKycState();
-}
-
-class FlutterIdentityKycState extends State<FlutterIdentityKyc> {
-  Future<void> showModal() async {
-    /*
-       pass data to modal and display webview component
-    */
-
-    Navigator.of(context).push(IdentityKYCWebView(
-        merchantKey: widget.merchantKey,
-        firstName: widget.firstName,
-        lastName: widget.lastName,
-        userRef: widget.userRef,
-        isTest: widget.isTest,
-        email: widget.email,
-        onCancel: widget.onCancel,
-        onError: widget.onError,
-        onVerified: widget.onVerified));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // Identity KYC wrapper webview design
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          style: null,
-          onPressed: showModal,
-          child: widget.buttonText != null
-              ? widget.buttonText
-              : Text('Verify My Identity'),
-        ),
-      ),
-    );
-  }
-}
