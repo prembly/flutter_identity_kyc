@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-class IdentityKYCWebView extends ModalRoute {
+class IdentityKYCWebView extends StatelessWidget {
   final String merchantKey;
 
   final String email;
@@ -21,23 +21,22 @@ class IdentityKYCWebView extends ModalRoute {
 
   final Function onError;
 
+
   IdentityKYCWebView(
       {required this.merchantKey,
-      required this.email,
-      this.firstName,
-      this.lastName,
-      this.userRef,
-      this.isTest,
-      required this.onCancel,
-      required this.onVerified,
-      required this.onError});
+        required this.email,
+        this.firstName,
+        this.lastName,
+        this.userRef,
+        this.isTest,
+        required this.onCancel,
+        required this.onVerified,
+        required this.onError});
 
   @override
-  Widget buildPage(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-  ) {
+  Widget build(
+      BuildContext context,
+      ) {
     InAppWebViewController _webViewController;
 
     return new WillPopScope(
@@ -59,7 +58,9 @@ class IdentityKYCWebView extends ModalRoute {
                         "&user_ref=" +
                         userRef! +
                         "&isTest=" +
-                        isTest.toString())),
+                        isTest.toString(),
+                ),
+            ),
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
                 mediaPlaybackRequiresUserGesture: false,
@@ -103,9 +104,7 @@ class IdentityKYCWebView extends ModalRoute {
             },
             androidOnPermissionRequest: (InAppWebViewController controller,
                 String origin, List<String> resources) async {
-              return PermissionRequestResponse(
-                  resources: resources,
-                  action: PermissionRequestResponseAction.GRANT);
+              return PermissionRequestResponse(resources: resources, action: PermissionRequestResponseAction.GRANT);
             },
             onLoadStop: (controller, url) async {
               await controller.evaluateJavascript(source: """
@@ -123,21 +122,4 @@ class IdentityKYCWebView extends ModalRoute {
     );
   }
 
-  @override
-  bool get opaque => false;
-
-  @override
-  bool get barrierDismissible => true;
-
-  @override
-  Color get barrierColor => Colors.black.withOpacity(0.5);
-
-  @override
-  String get barrierLabel => "identitypass";
-
-  @override
-  bool get maintainState => true;
-
-  @override
-  Duration get transitionDuration => Duration(milliseconds: 500);
 }
