@@ -35,3 +35,8 @@
 ## 0.1.0
 
 * bug fix - fixed display issue,camera issue and file upload issue.
+
+
+## 0.1.1
+
+* bug fix - fixed ios camera issue.

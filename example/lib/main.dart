@@ -33,12 +33,12 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Center(
             child: FlutterIdentityKyc(
-                merchantKey: "your public key",
+                merchantKey: "your public key here",
                 email: "olayiwolakayode078@gmail.com",
                 firstName: "kayode",
                 lastName: "olayiwola",
                 isTest: false,
-                userRef: "ddddd",
+                userRef: "your user reference",
                 onCancel: (response) {
                   print(response);
                 },

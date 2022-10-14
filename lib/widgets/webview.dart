@@ -64,6 +64,7 @@ class IdentityKYCWebView extends ModalRoute {
               crossPlatform: InAppWebViewOptions(
                 mediaPlaybackRequiresUserGesture: false,
               ),
+              ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback:true)
             ),
             onWebViewCreated: (InAppWebViewController controller) {
               _webViewController = controller;
