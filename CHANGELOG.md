@@ -40,3 +40,12 @@
 ## 0.1.1
 
 * bug fix - fixed ios camera issue.
+
+
+## 0.1.2
+
+* Allow dynamic widget visibility
+
+## 0.1.3
+
+* Update on documentation

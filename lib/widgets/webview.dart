@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-class IdentityKYCWebView extends ModalRoute {
+class IdentityKYCWebView extends StatelessWidget {
   final String merchantKey;
 
   final String email;
@@ -13,13 +15,13 @@ class IdentityKYCWebView extends ModalRoute {
 
   final String? userRef;
 
-  final bool? isTest;
-
   final Function onCancel;
 
   final Function onVerified;
 
   final Function onError;
+
+  final Function dimissModal;
 
   IdentityKYCWebView(
       {required this.merchantKey,
@@ -27,17 +29,13 @@ class IdentityKYCWebView extends ModalRoute {
       this.firstName,
       this.lastName,
       this.userRef,
-      this.isTest,
       required this.onCancel,
+      required this.dimissModal,
       required this.onVerified,
       required this.onError});
 
   @override
-  Widget buildPage(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-  ) {
+  Widget build(BuildContext context) {
     InAppWebViewController _webViewController;
 
     return new WillPopScope(
@@ -58,14 +56,13 @@ class IdentityKYCWebView extends ModalRoute {
                         email +
                         "&user_ref=" +
                         userRef! +
-                        "&isTest=" +
-                        isTest.toString())),
+                        "&isTest=false")),
             initialOptions: InAppWebViewGroupOptions(
-              crossPlatform: InAppWebViewOptions(
-                mediaPlaybackRequiresUserGesture: false,
-              ),
-              ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback:true)
-            ),
+                crossPlatform: InAppWebViewOptions(
+                    mediaPlaybackRequiresUserGesture: false),
+                ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback: true)),
+            gestureRecognizers: {}..add(Factory<LongPressGestureRecognizer>(
+                () => LongPressGestureRecognizer())),
             onWebViewCreated: (InAppWebViewController controller) {
               _webViewController = controller;
 
@@ -78,27 +75,29 @@ class IdentityKYCWebView extends ModalRoute {
                       switch (response["event"]) {
                         case "closed":
                           onCancel({"status": "closed"});
-                          Navigator.pop(context);
+                          dimissModal();
                           break;
                         case "error":
                           onError({
                             "status": "error",
                             "message": response['message']
                           });
-                          Navigator.pop(context);
+                          dimissModal();
                           break;
                         case "verified":
                           onVerified({
                             "status": "success",
                             "data": response,
                           });
-                          Navigator.pop(context);
+                          dimissModal();
                           break;
                         default:
                           break;
                       }
                     }
-                  } catch (e) {}
+                  } catch (e) {
+                    dimissModal();
+                  }
                 },
               );
             },
@@ -123,22 +122,4 @@ class IdentityKYCWebView extends ModalRoute {
       ),
     );
   }
-
-  @override
-  bool get opaque => false;
-
-  @override
-  bool get barrierDismissible => true;
-
-  @override
-  Color get barrierColor => Colors.black.withOpacity(0.5);
-
-  @override
-  String get barrierLabel => "identitypass";
-
-  @override
-  bool get maintainState => true;
-
-  @override
-  Duration get transitionDuration => Duration(milliseconds: 500);
 }

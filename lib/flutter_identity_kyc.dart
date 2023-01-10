@@ -33,8 +33,11 @@ class FlutterIdentityKyc extends StatefulWidget {
   //user reference - optional
   final String? userRef;
 
-  //is test - optional
-  final bool? isTest;
+  // show modal controller
+  final bool showWidget;
+
+  //show button controller
+  final bool showButton;
 
   //on verification cancelled callback
   final Function onCancel;
@@ -57,7 +60,8 @@ class FlutterIdentityKyc extends StatefulWidget {
       this.firstName,
       this.lastName,
       this.userRef,
-      this.isTest,
+      required this.showWidget,
+      required this.showButton,
       required this.onCancel(response),
       required this.onVerified(response),
       this.customButton,
@@ -69,36 +73,47 @@ class FlutterIdentityKyc extends StatefulWidget {
 }
 
 class FlutterIdentityKycState extends State<FlutterIdentityKyc> {
-  Future<void> showModal() async {
-    /*
-       pass data to modal and display webview component
-    */
+  var triggerWidget = false;
 
-    Navigator.of(context).push(IdentityKYCWebView(
-        merchantKey: widget.merchantKey,
-        firstName: widget.firstName,
-        lastName: widget.lastName,
-        userRef: widget.userRef,
-        isTest: widget.isTest,
-        email: widget.email,
-        onCancel: widget.onCancel,
-        onError: widget.onError,
-        onVerified: widget.onVerified));
+  Future<void> onButtonPress() async {
+    /*
+       handle button press - this triggers modal
+    */
+    setState(() => {triggerWidget = !triggerWidget});
+  }
+
+  Future<void> dismissModal() async {
+    /*
+       dismiss widget modal
+    */
+    setState(() => {triggerWidget = false});
   }
 
   @override
   Widget build(BuildContext context) {
     // Identity KYC wrapper webview design
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          style: null,
-          onPressed: showModal,
-          child: widget.buttonText != null
-              ? widget.buttonText
-              : Text('Verify My Identity'),
-        ),
-      ),
-    );
+        body: (widget.showWidget || triggerWidget)
+            ? IdentityKYCWebView(
+                merchantKey: widget.merchantKey,
+                firstName: widget.firstName,
+                lastName: widget.lastName,
+                userRef: widget.userRef,
+                email: widget.email,
+                onCancel: widget.onCancel,
+                onError: widget.onError,
+                onVerified: widget.onVerified,
+                dimissModal: dismissModal)
+            // ignore: unnecessary_null_comparison
+            : widget.showButton != null
+                ? Center(
+                    child: ElevatedButton(
+                    style: null,
+                    onPressed: onButtonPress,
+                    child: widget.buttonText != null
+                        ? widget.buttonText
+                        : Text('Verify My Identity'),
+                  ))
+                : Container());
   }
 }

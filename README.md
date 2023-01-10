@@ -10,12 +10,13 @@ Install package by adding  flutter_identity_kyc to your pubspec.yaml file
 # KYC Widget
 ```dart
 FlutterIdentityKyc(
-    merchantKey: "jywkldnlwoidhlwdknlwo",
-    email: "test@test.com",
-    firstName: "",
-    lastName: "",
+    merchantKey: "your merchant public key",
+    email: "your email address",
+    firstName: "your first name",
+    lastName: "your last name",
+    showWidget: false, // this can be used to control widget visibility
+    showButton: true, // this determines if the trigger button should show
     userRef:"unique user ref",
-    isTest:false //should be true if you want to run a test
     onCancel: (response) => {print(response)},
     onVerified: (response) => {print(response)},
     onError: (error) => print(error)),
@@ -79,6 +80,8 @@ class _MyAppState extends State<MyApp> {
                 lastName: "",
                 userRef:"",
                 isTest:false,
+                showWidget: false,
+                showButton: false, 
                 onCancel: (response) => {print(response)},
                 onVerified: (response) => {print(response)},
                 onError: (error) => print(error)),

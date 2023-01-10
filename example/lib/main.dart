@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> Function() requestPermissions = () async {
-    await Permission.camera.request();
+    await Permission.camera.request().isGranted;
 
     await Permission.microphone.request();
   };
@@ -28,25 +28,24 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text('IdentityPass Checkout Test'),
-          ),
           body: Center(
-            child: FlutterIdentityKyc(
-                merchantKey: "your public key here",
-                email: "olayiwolakayode078@gmail.com",
-                firstName: "kayode",
-                lastName: "olayiwola",
-                isTest: false,
-                userRef: "your user reference",
-                onCancel: (response) {
-                  print(response);
-                },
-                onVerified: (response) {
-                  print(response);
-                },
-                onError: (error) => print(error)),
-          )),
+        child: FlutterIdentityKyc(
+            merchantKey: "Enter your merchant public key",
+            email: "your user email address",
+            firstName: "your user first name",
+            lastName: "your user's lastname",
+            userRef: "your user reference",
+            showWidget: false, // this can be used to control widget visibility
+            showButton:
+                true, // this determines if the trigger button should show
+            onCancel: (response) {
+              print(response);
+            },
+            onVerified: (response) {
+              print(response);
+            },
+            onError: (error) => print(error)),
+      )),
     );
   }
 }
