@@ -1,22 +1,9 @@
 import 'package:flutter/material.dart';
-import 'widgets/webview.dart';
+import 'package:flutter_identity_kyc/widgets/webview.dart';
 
-class FlutterIdentityKyc extends StatefulWidget {
-  /*
-
-      IdentityPass Main Flutter wrapper
-      params:
-          merchantKey:String
-          email: String
-          firstName: String?
-          lastName: String?
-          onCancel: Function
-          onVerified: Function
-          onError: Function
-          buttonText: Text?
-          customButton: ElevatedButton?
-
-  */
+class InputParameters {
+  //context
+  BuildContext context;
 
   //Merchant public key
   final String merchantKey;
@@ -33,12 +20,6 @@ class FlutterIdentityKyc extends StatefulWidget {
   //user reference - optional
   final String? userRef;
 
-  // show modal controller
-  final bool showWidget;
-
-  //show button controller
-  final bool showButton;
-
   //on verification cancelled callback
   final Function onCancel;
 
@@ -48,72 +29,83 @@ class FlutterIdentityKyc extends StatefulWidget {
   // on error callback
   final Function onError;
 
-  //text to appear on button
-  final Text? buttonText;
-
-  ///custom button design
-  final ElevatedButton? customButton;
-
-  FlutterIdentityKyc(
-      {required this.merchantKey,
+  InputParameters(
+      {required this.context,
+      required this.merchantKey,
       required this.email,
-      this.firstName,
-      this.lastName,
-      this.userRef,
-      required this.showWidget,
-      required this.showButton,
-      required this.onCancel(response),
-      required this.onVerified(response),
-      this.customButton,
-      this.buttonText,
-      required this.onError(error)});
-
-  @override
-  FlutterIdentityKycState createState() => FlutterIdentityKycState();
+      required this.firstName,
+      required this.lastName,
+      required this.userRef,
+      required this.onCancel,
+      required this.onVerified,
+      required this.onError});
 }
 
-class FlutterIdentityKycState extends State<FlutterIdentityKyc> {
-  var triggerWidget = false;
+class FlutterIdentityKyc {
+  /*
 
-  Future<void> onButtonPress() async {
+      IdentityPass Main Flutter wrapper
+      params:
+          merchantKey:String
+          email: String
+          firstName: String?
+          lastName: String?
+          onCancel: Function
+          onVerified: Function
+          onError: Function
+
+  */
+
+  static Future<void> showWidget(InputParameters parameters) {
     /*
-       handle button press - this triggers modal
+     show the verification widget
+
+    merchantKet: your public key
+
     */
-    setState(() => {triggerWidget = !triggerWidget});
-  }
 
-  Future<void> dismissModal() async {
-    /*
+    Future<void> onCancelHandler(data) async {
+      /*
        dismiss widget modal
     */
-    setState(() => {triggerWidget = false});
-  }
+      Navigator.pop(parameters.context);
+      parameters.onCancel(data);
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    // Identity KYC wrapper webview design
-    return Scaffold(
-        body: (widget.showWidget || triggerWidget)
-            ? IdentityKYCWebView(
-                merchantKey: widget.merchantKey,
-                firstName: widget.firstName,
-                lastName: widget.lastName,
-                userRef: widget.userRef,
-                email: widget.email,
-                onCancel: widget.onCancel,
-                onError: widget.onError,
-                onVerified: widget.onVerified,
-                dimissModal: dismissModal)
-            // ignore: unnecessary_null_comparison
-            : widget.showButton != null
-                ? Center(
-                    child: ElevatedButton(
-                    style: null,
-                    onPressed: onButtonPress,
-                    child: widget.buttonText != null
-                        ? widget.buttonText
-                        : Text('Verify My Identity'),
-                  ))
-                : Container());
+    Future<void> onSuccessHandler(data) async {
+      /*
+       on success verification on widget handler
+    */
+      Navigator.pop(parameters.context, data);
+      parameters.onVerified(data);
+    }
+
+    Future<void> onErrorHandler(data) async {
+      /*
+       error on widget handler
+    */
+      Navigator.pop(parameters.context);
+      parameters.onError(data);
+    }
+
+    return showDialog(
+      context: parameters.context,
+      builder: (context) {
+        /*
+        this show the verification widget
+        */
+        return Scaffold(
+            body: IdentityKYCWebView(
+          merchantKey: parameters.merchantKey,
+          firstName: parameters.firstName,
+          lastName: parameters.lastName,
+          userRef: parameters.userRef,
+          email: parameters.email,
+          onCancel: onCancelHandler,
+          onError: onErrorHandler,
+          onVerified: onSuccessHandler,
+        ));
+      },
+    );
   }
 }

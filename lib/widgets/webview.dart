@@ -21,8 +21,6 @@ class IdentityKYCWebView extends StatelessWidget {
 
   final Function onError;
 
-  final Function dimissModal;
-
   IdentityKYCWebView(
       {required this.merchantKey,
       required this.email,
@@ -30,7 +28,6 @@ class IdentityKYCWebView extends StatelessWidget {
       this.lastName,
       this.userRef,
       required this.onCancel,
-      required this.dimissModal,
       required this.onVerified,
       required this.onError});
 
@@ -75,29 +72,24 @@ class IdentityKYCWebView extends StatelessWidget {
                       switch (response["event"]) {
                         case "closed":
                           onCancel({"status": "closed"});
-                          dimissModal();
                           break;
                         case "error":
                           onError({
                             "status": "error",
                             "message": response['message']
                           });
-                          dimissModal();
                           break;
                         case "verified":
                           onVerified({
                             "status": "success",
                             "data": response,
                           });
-                          dimissModal();
                           break;
                         default:
                           break;
                       }
                     }
-                  } catch (e) {
-                    dimissModal();
-                  }
+                  } catch (e) {}
                 },
               );
             },

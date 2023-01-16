@@ -9,17 +9,16 @@ Install package by adding  flutter_identity_kyc to your pubspec.yaml file
 
 # KYC Widget
 ```dart
-FlutterIdentityKyc(
+
+FlutterIdentityKyc.showWidget(InputParamters(
     merchantKey: "your merchant public key",
     email: "your email address",
     firstName: "your first name",
     lastName: "your last name",
-    showWidget: false, // this can be used to control widget visibility
-    showButton: true, // this determines if the trigger button should show
     userRef:"unique user ref",
     onCancel: (response) => {print(response)},
     onVerified: (response) => {print(response)},
-    onError: (error) => print(error)),
+    onError: (error) => print(error))),
 )
 ```
 
@@ -49,9 +48,10 @@ Add the following permission to your android "info.plist" file
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_identity_kyc/flutter_identity_kyc.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -63,30 +63,40 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    requestPermissions();
   }
+
+  Future<void> Function() requestPermissions = () async {
+    await Permission.camera.request().isGranted;
+
+    await Permission.microphone.request();
+  };
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text('IdentityPass Checkout Test'),
-          ),
-          body: Center(
-            child: FlutterIdentityKyc(
-                merchantKey: "",
-                email: ",
-                firstName: "",
-                lastName: "",
-                userRef:"",
-                isTest:false,
-                showWidget: false,
-                showButton: false, 
-                onCancel: (response) => {print(response)},
-                onVerified: (response) => {print(response)},
-                onError: (error) => print(error)),
-          )),
-    );
+        home: Scaffold(
+            body: Center(
+                child: ElevatedButton(
+      style: null,
+      onPressed: () {
+        FlutterIdentityKyc.showWidget(InputParameters(
+            context: context,
+            merchantKey: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            userRef: "",
+            onCancel: (response) {
+              print(response);
+            },
+            onVerified: (response) {
+              print(response);
+            },
+            onError: (error) => print(error)));
+      },
+      child: Text('Verify My Identity'),
+    ))));
   }
 }
 ```

@@ -49,3 +49,7 @@
 ## 0.1.3
 
 * Update on documentation
+
+## 0.1.4
+
+* Allow dynamic widget trigger
