@@ -43,7 +43,17 @@ class IdentityKYCWebView extends StatelessWidget {
           child: InAppWebView(
             initialUrlRequest: URLRequest(
                 url: Uri.parse(
-                    "https://mobile-kyc.myidentitypass.com/?merchantKey=live_336iqkrz6h4tj9d8dkbk:xloZhoeAiY3INf0p7yyWlPLr8rY&firstName=ddddd&lastName=dddd&email=kkkayyd@jhsd.com&user_ref=sdsdsd&isTest=false")),
+                    "https://mobile-kyc.myidentitypass.com?merchantKey=" +
+                        merchantKey +
+                        "&firstName=" +
+                        firstName! +
+                        "&lastName=" +
+                        lastName! +
+                        "&email=" +
+                        email +
+                        "&user_ref=" +
+                        userRef! +
+                        "&isTest=false")),
             initialOptions: InAppWebViewGroupOptions(
                 crossPlatform: InAppWebViewOptions(
                     mediaPlaybackRequiresUserGesture: false),
