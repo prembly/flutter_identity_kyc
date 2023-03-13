@@ -1,4 +1,4 @@
-group 'com.example.flutter_identity_kyc'
+group 'com.kayyode.flutter_identity_kyc'
 version '1.0-SNAPSHOT'
 
 buildscript {

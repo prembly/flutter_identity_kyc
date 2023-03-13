@@ -34,11 +34,12 @@ class _MyAppState extends State<MyApp> {
       onPressed: () {
         FlutterIdentityKyc.showWidget(InputParameters(
             context: context,
-            merchantKey: "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            userRef: "",
+            merchantKey:
+                "live_336iqkrz6h4tj9d8dkbk:xloZhoeAiY3INf0p7yyWlPLr8rY",
+            firstName: "kayde",
+            lastName: "ola",
+            email: "test@test.com",
+            userRef: "eeeee",
             onCancel: (response) {
               print(response);
             },
