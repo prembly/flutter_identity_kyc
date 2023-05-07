@@ -57,3 +57,7 @@
 ## 0.1.5
 
 * Added new required permissions that are needed for optimal performance
+
+## 0.1.6
+
+* Updated Kotlin version
