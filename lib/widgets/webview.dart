@@ -53,7 +53,7 @@ class IdentityKYCWebView extends StatelessWidget {
                         email +
                         "&user_ref=" +
                         userRef! +
-                        "&isTest=false")),
+                        "&isTest=false&version=2")),
             initialOptions: InAppWebViewGroupOptions(
                 crossPlatform: InAppWebViewOptions(
                     mediaPlaybackRequiresUserGesture: false),

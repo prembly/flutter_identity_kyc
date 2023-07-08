@@ -1,8 +1,8 @@
 name: flutter_identity_kyc
 description: identitypass flutter kyc package.
-version: 0.1.6
-homepage: https://github.com/IDENTITYPASS/flutter_identity_kyc.git
-repository: https://github.com/IDENTITYPASS/flutter_identity_kyc.git
+version: 0.1.8
+homepage: https://github.com/prembly/flutter_identity_kyc.git
+repository: https://github.com/prembly/flutter_identity_kyc.git
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

@@ -61,3 +61,11 @@
 ## 0.1.6
 
 * Updated Kotlin version
+
+## 0.1.7
+
+* Added support for prembly 2.0
+
+## 0.1.8
+
+* Added support for prembly 2.0 - update
