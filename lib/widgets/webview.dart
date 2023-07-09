@@ -42,18 +42,17 @@ class IdentityKYCWebView extends StatelessWidget {
         child: SafeArea(
           child: InAppWebView(
             initialUrlRequest: URLRequest(
-                url: Uri.parse(
-                    "https://mobile-kyc.myidentitypass.com?merchantKey=" +
-                        merchantKey +
-                        "&firstName=" +
-                        firstName! +
-                        "&lastName=" +
-                        lastName! +
-                        "&email=" +
-                        email +
-                        "&user_ref=" +
-                        userRef! +
-                        "&isTest=false&version=2")),
+                url: Uri.parse("https://mobile.prembly.com?merchantKey=" +
+                    merchantKey +
+                    "&firstName=" +
+                    firstName! +
+                    "&lastName=" +
+                    lastName! +
+                    "&email=" +
+                    email +
+                    "&user_ref=" +
+                    userRef! +
+                    "&isTest=false")),
             initialOptions: InAppWebViewGroupOptions(
                 crossPlatform: InAppWebViewOptions(
                     mediaPlaybackRequiresUserGesture: false),
