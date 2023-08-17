@@ -1,6 +1,6 @@
 # flutter_identity_kyc
 
-IdentityPass KYC Checkout flutter Wrapper
+Prembly 2.0 KYC Checkout flutter Wrapper
 
 # Getting Started
 
@@ -16,6 +16,7 @@ FlutterIdentityKyc.showWidget(InputParamters(
     firstName: "your first name",
     lastName: "your last name",
     userRef:"unique user ref",
+    config:"Your configuration id from your widget configuration"
     onCancel: (response) => {print(response)},
     onVerified: (response) => {print(response)},
     onError: (error) => print(error))),
@@ -91,6 +92,7 @@ class _MyAppState extends State<MyApp> {
             lastName: "",
             email: "",
             userRef: "",
+            config:"",
             onCancel: (response) {
               print(response);
             },

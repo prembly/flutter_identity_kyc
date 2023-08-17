@@ -15,6 +15,8 @@ class IdentityKYCWebView extends StatelessWidget {
 
   final String? userRef;
 
+  final String config;
+
   final Function onCancel;
 
   final Function onVerified;
@@ -24,6 +26,7 @@ class IdentityKYCWebView extends StatelessWidget {
   IdentityKYCWebView(
       {required this.merchantKey,
       required this.email,
+      required this.config,
       this.firstName,
       this.lastName,
       this.userRef,
@@ -50,6 +53,8 @@ class IdentityKYCWebView extends StatelessWidget {
                     lastName! +
                     "&email=" +
                     email +
+                    "&config_id=" +
+                    config +
                     "&user_ref=" +
                     userRef! +
                     "&isTest=false")),

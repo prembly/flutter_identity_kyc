@@ -73,3 +73,7 @@
 ## 0.1.9
 
 * Added support for prembly 2.0 - bug fix
+
+## 0.2.0
+
+* Added support for prembly 2.0

@@ -11,6 +11,8 @@ class InputParameters {
   //user email
   final String email;
 
+  final String config;
+
   //user first name - optional
   final String? firstName;
 
@@ -36,6 +38,7 @@ class InputParameters {
       required this.firstName,
       required this.lastName,
       required this.userRef,
+      required this.config,
       required this.onCancel,
       required this.onVerified,
       required this.onError});
@@ -101,6 +104,7 @@ class FlutterIdentityKyc {
           lastName: parameters.lastName,
           userRef: parameters.userRef,
           email: parameters.email,
+          config: parameters.email,
           onCancel: onCancelHandler,
           onError: onErrorHandler,
           onVerified: onSuccessHandler,
