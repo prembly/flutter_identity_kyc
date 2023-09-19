@@ -104,7 +104,7 @@ class FlutterIdentityKyc {
           lastName: parameters.lastName,
           userRef: parameters.userRef,
           email: parameters.email,
-          config: parameters.email,
+          config: parameters.config,
           onCancel: onCancelHandler,
           onError: onErrorHandler,
           onVerified: onSuccessHandler,
