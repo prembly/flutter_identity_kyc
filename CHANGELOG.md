@@ -90,3 +90,12 @@
 ## 0.2.3
 
 * fixed kotlin compatibility issue
+
+## 0.2.4
+
+* fixed kotlin compatibility issue
+
+
+## 0.2.5
+
+* added a wider flutter support range for android
