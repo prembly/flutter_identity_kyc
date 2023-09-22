@@ -85,3 +85,8 @@
 ## 0.2.2
 
 * fixed kotlin compatibility issue
+
+
+## 0.2.3
+
+* fixed kotlin compatibility issue
