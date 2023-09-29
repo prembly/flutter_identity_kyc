@@ -18,7 +18,6 @@ buildscript {
     }
 }
 
-
 rootProject.allprojects {
     repositories {
         google()
@@ -30,13 +29,14 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion rootProject.ext.compileSdkVersion  // Use the parent project's compileSdkVersion
+ 
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion rootProject.ext.minSdkVersion  // Use the parent project's minSdkVersion
     }
 }
 

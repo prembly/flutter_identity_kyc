@@ -99,3 +99,12 @@
 ## 0.2.5
 
 * added a wider flutter support range for android
+
+
+## 0.2.6
+
+* added support for AndroidX and fix compile SDK issue
+
+## 0.2.7
+
+* added support for AndroidX and fix compile SDK issue
