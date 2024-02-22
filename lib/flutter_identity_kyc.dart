@@ -45,70 +45,47 @@ class InputParameters {
 }
 
 class FlutterIdentityKyc {
-  /*
+  // Add a GlobalKey to maintain a reference to the ScaffoldState
+  static final GlobalKey<ScaffoldState> scaffoldKey =
+      GlobalKey<ScaffoldState>();
 
-      IdentityPass Main Flutter wrapper
-      params:
-          merchantKey:String
-          email: String
-          firstName: String?
-          lastName: String?
-          onCancel: Function
-          onVerified: Function
-          onError: Function
-
-  */
-
-  static Future<void> showWidget(InputParameters parameters) {
-    /*
-     show the verification widget
-
-    merchantKet: your public key
-
-    */
-
+  static Future<void> showWidget(InputParameters parameters) async {
     Future<void> onCancelHandler(data) async {
-      /*
-       dismiss widget modal
-    */
-      Navigator.pop(parameters.context);
+      // Dismiss widget modal by popping the Navigator
+      Navigator.pop(scaffoldKey.currentContext!);
       parameters.onCancel(data);
     }
 
     Future<void> onSuccessHandler(data) async {
-      /*
-       on success verification on widget handler
-    */
-      Navigator.pop(parameters.context, data);
+      // On success verification on widget handler
+      Navigator.pop(scaffoldKey.currentContext!, data);
       parameters.onVerified(data);
     }
 
     Future<void> onErrorHandler(data) async {
-      /*
-       error on widget handler
-    */
-      Navigator.pop(parameters.context);
+      // Error on widget handler
+      Navigator.pop(scaffoldKey.currentContext!);
       parameters.onError(data);
     }
 
     return showDialog(
       context: parameters.context,
       builder: (context) {
-        /*
-        this show the verification widget
-        */
+        // Assign the GlobalKey to the Scaffold
         return Scaffold(
-            body: IdentityKYCWebView(
-          merchantKey: parameters.merchantKey,
-          firstName: parameters.firstName,
-          lastName: parameters.lastName,
-          userRef: parameters.userRef,
-          email: parameters.email,
-          config: parameters.config,
-          onCancel: onCancelHandler,
-          onError: onErrorHandler,
-          onVerified: onSuccessHandler,
-        ));
+          key: scaffoldKey,
+          body: IdentityKYCWebView(
+            merchantKey: parameters.merchantKey,
+            firstName: parameters.firstName,
+            lastName: parameters.lastName,
+            userRef: parameters.userRef,
+            email: parameters.email,
+            config: parameters.config,
+            onCancel: onCancelHandler,
+            onError: onErrorHandler,
+            onVerified: onSuccessHandler,
+          ),
+        );
       },
     );
   }
