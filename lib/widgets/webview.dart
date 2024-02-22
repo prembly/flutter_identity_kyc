@@ -131,7 +131,9 @@ class IdentityKYCWebView extends StatelessWidget {
                   onConsoleMessage: (
                     InAppWebViewController controller,
                     ConsoleMessage consoleMessage,
-                  ) {},
+                  ) {
+                    print(consoleMessage);
+                  },
                 ),
               );
             },
