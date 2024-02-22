@@ -71,8 +71,8 @@ class FlutterIdentityKyc {
       /*
        dismiss widget modal
     */
-      // Navigator.pop(parameters.context);
-      Navigator.of(parameters.context, rootNavigator: true).pop();
+      Navigator.pop(parameters.context);
+      //Navigator.of(parameters.context, rootNavigator: true).pop();
       parameters.onCancel(data);
     }
 
@@ -88,8 +88,8 @@ class FlutterIdentityKyc {
       /*
        error on widget handler
     */
-      // Navigator.pop(parameters.context);
-      Navigator.of(parameters.context, rootNavigator: true).pop();
+      /Navigator.pop(parameters.context);
+      //Navigator.of(parameters.context, rootNavigator: false).pop();
       parameters.onError(data);
     }
 
