@@ -26,6 +26,7 @@ class IdentityKYCWebView extends StatelessWidget {
     required this.onVerified,
     required this.onError,
   });
+  
 
   @override
   Widget build(BuildContext context) {
