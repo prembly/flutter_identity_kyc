@@ -38,6 +38,33 @@ Add the following permission to your android "AndroidManifest.xml" file
  <uses-permission android:name="android.permission.VIDEO_CAPTURE" />
 ```
 
+Add the following to your project android.gradle
+```dart
+
+allprojects {
+    ext {
+        compileSdkVersion = 33
+        targetSdkVersion = 33
+        minSdkVersion = 21
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+subprojects {
+    afterEvaluate { project -> if (project.hasProperty('android')) {
+        project.android {
+            if (namespace == null) {
+                namespace project.group
+            }
+        }
+    }
+    }
+}
+```
+
 # IOS
 
 Add the following permission to your android "info.plist" file
