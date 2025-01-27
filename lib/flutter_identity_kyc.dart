@@ -100,7 +100,7 @@ class FlutterIdentityKyc {
         this show the verification widget
         */
         return Scaffold(
-            body: IdentityKYCWebView(
+            body: IdentityKwYCWebView(
           merchantKey: parameters.merchantKey,
           firstName: parameters.firstName,
           lastName: parameters.lastName,

@@ -108,3 +108,8 @@
 ## 0.2.7
 
 * added support for AndroidX and fix compile SDK issue
+
+
+## 0.2.8
+
+* fix build issue on android
