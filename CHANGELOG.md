@@ -129,3 +129,7 @@
 ## 0.3.2
 
 * Added support for prembly 2.0
+
+## 0.3.3
+
+* Added support for prembly 2.0
