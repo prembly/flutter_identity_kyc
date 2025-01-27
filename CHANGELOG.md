@@ -125,3 +125,7 @@
 ## 0.3.1
 
 * Update on documentation
+
+## 0.3.2
+
+* Added support for prembly 2.0
