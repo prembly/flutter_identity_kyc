@@ -113,3 +113,7 @@
 ## 0.2.8
 
 * fix build issue on android
+
+## 0.2.9
+
+* fix build issue on android
