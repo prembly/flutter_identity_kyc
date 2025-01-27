@@ -18,6 +18,12 @@ buildscript {
     }
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
 rootProject.allprojects {
     repositories {
         google()
@@ -30,7 +36,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion  // Use the parent project's compileSdkVersion
- 
+    namespace 'com.example.flutter_identity_kyc' // Replace with your app's package name
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -40,6 +46,11 @@ android {
     }
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
+//dependencies {
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+//}
+Collapse
+has context menu
+
+
+has context menu
