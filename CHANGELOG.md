@@ -133,3 +133,7 @@
 ## 0.3.3
 
 * Added support for prembly 2.0
+
+## 0.3.3
+
+* fix build issue on android
