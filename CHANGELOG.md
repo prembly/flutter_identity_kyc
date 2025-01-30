@@ -134,6 +134,10 @@
 
 * Added support for prembly 2.0
 
-## 0.3.3
+## 0.3.4
 
 * fix build issue on android
+
+## 0.3.5
+
+* fix gradle issue on android
