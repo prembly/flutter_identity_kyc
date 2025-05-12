@@ -30,8 +30,7 @@ class IdentityKYCWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     InAppWebViewController _webViewController;
-    final GlobalKey<NavigatorState> navigatorKey =
-        GlobalKey<NavigatorState>();
+    final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
     return new WillPopScope(
       onWillPop: () async => false,
@@ -44,7 +43,7 @@ class IdentityKYCWebView extends StatelessWidget {
               return MaterialPageRoute(
                 builder: (context) => InAppWebView(
                   initialUrlRequest: URLRequest(
-                    url: Uri.parse(
+                    url: WebUri(
                       "https://mobile.prembly.com/?merchantKey=" +
                           merchantKey +
                           "&firstName=" +
@@ -69,10 +68,10 @@ class IdentityKYCWebView extends StatelessWidget {
                     ),
                   ),
                   gestureRecognizers: {}..add(
-                    Factory<LongPressGestureRecognizer>(
-                      () => LongPressGestureRecognizer(),
+                      Factory<LongPressGestureRecognizer>(
+                        () => LongPressGestureRecognizer(),
+                      ),
                     ),
-                  ),
                   onWebViewCreated: (InAppWebViewController controller) {
                     _webViewController = controller;
                     _webViewController.addJavaScriptHandler(
