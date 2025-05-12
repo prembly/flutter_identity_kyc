@@ -141,3 +141,7 @@
 ## 0.3.5
 
 * fix gradle issue on android
+
+## 0.3.6
+
+* upgrade on flutter-inapp webview package
