@@ -145,3 +145,7 @@
 ## 0.3.6
 
 * upgrade on flutter-inapp webview package
+
+## 0.3.7
+
+* fixed ios camera issue
