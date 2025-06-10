@@ -34,8 +34,13 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App needs access to photo lib for profile images</string>
-	<key>NSCameraUsageDescription</key>
-	<string>To capture profile photo please grant camera access</string>
+	<key>NSMicrophoneUsageDescription</key>
+<string>Flutter requires acess to microphone.</string>
+
+<key>NSCameraUsageDescription</key>
+<string>Flutter requires acess to camera.</string>
+
+
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

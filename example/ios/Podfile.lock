@@ -2,21 +2,21 @@ PODS:
   - Flutter (1.0.0)
   - flutter_identity_kyc (0.0.1):
     - Flutter
-  - flutter_inappwebview (0.0.1):
+  - flutter_inappwebview_ios (0.0.1):
     - Flutter
-    - flutter_inappwebview/Core (= 0.0.1)
-    - OrderedSet (~> 5.0)
-  - flutter_inappwebview/Core (0.0.1):
+    - flutter_inappwebview_ios/Core (= 0.0.1)
+    - OrderedSet (~> 6.0.3)
+  - flutter_inappwebview_ios/Core (0.0.1):
     - Flutter
-    - OrderedSet (~> 5.0)
-  - OrderedSet (5.0.0)
+    - OrderedSet (~> 6.0.3)
+  - OrderedSet (6.0.3)
   - "permission_handler (5.1.0+2)":
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_identity_kyc (from `.symlinks/plugins/flutter_identity_kyc/ios`)
-  - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
+  - flutter_inappwebview_ios (from `.symlinks/plugins/flutter_inappwebview_ios/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
 
 SPEC REPOS:
@@ -28,18 +28,18 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_identity_kyc:
     :path: ".symlinks/plugins/flutter_identity_kyc/ios"
-  flutter_inappwebview:
-    :path: ".symlinks/plugins/flutter_inappwebview/ios"
+  flutter_inappwebview_ios:
+    :path: ".symlinks/plugins/flutter_inappwebview_ios/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_identity_kyc: c1c5790c11a35241e8184663824f948ac8498682
-  flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
-  OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
+  flutter_inappwebview_ios: 6f63631e2c62a7c350263b13fa5427aedefe81d4
+  OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
 
 PODFILE CHECKSUM: 24574a97d62f2ae3e4653514c19a2938e60a68ae
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.16.2
