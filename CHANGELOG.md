@@ -153,3 +153,7 @@
 ## 0.3.8
 
 * fixed android issue
+
+## 0.3.9
+
+* updated documentation
