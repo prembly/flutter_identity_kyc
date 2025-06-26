@@ -73,8 +73,9 @@ Add the following permission to your android "info.plist" file
     <string>App needs access to photo lib for profile images</string>
     <key>NSCameraUsageDescription</key>
     <string>To capture profile photo please grant camera access</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>To capture profile photo please grant acess to microphone.</string>
 ```
-
 
 # Sample implementation
 ```dart

@@ -149,3 +149,7 @@
 ## 0.3.7
 
 * fixed ios camera issue
+
+## 0.3.8
+
+* fixed android issue
